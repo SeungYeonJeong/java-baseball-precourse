@@ -71,6 +71,19 @@ public class Application {
         return false;
     }
 
+    // 게임 종료 여부
+    public boolean stopGame() {
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+        int regameNumber = Integer.parseInt(Console.readLine());
+
+        if (regameNumber == 1) {
+            return false;
+        } else {
+            System.out.println("게임 끝");
+            return true;
+        }
+    }
+
     public static void main(String[] args) {
         // TODO 숫자 야구 게임 구현
         Application application = new Application();
@@ -80,6 +93,17 @@ public class Application {
             String[] inputNumberArr = application.getInputNumber();
             int[] counts = application.getCounts(inputNumberArr, randomNumberArr);
             boolean isCorrect = application.printCounts(counts);
+            if (!isCorrect){
+                continue;
+            }
+            System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+            boolean stopGame = application.stopGame();
+            if (stopGame) {
+                System.out.println("게임 끝");
+                break;
+            } else {
+                randomNumberArr = application.getRandomNumber();
+            }
         }
     }
 
