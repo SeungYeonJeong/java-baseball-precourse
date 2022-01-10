@@ -44,6 +44,33 @@ public class Application {
         return counts;
     }
 
+    // 비교 결과 출력
+    public boolean printCounts(int[] counts) {
+        int countStrike = counts[0];
+        int countBall = counts[1];
+
+        if (countStrike == 3) {
+            System.out.println(countStrike + "스트라이크");
+            System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+
+            return true;
+        }
+        if (countStrike == 0 && countBall == 0) {
+            System.out.println("낫싱");
+        }
+        else if (countStrike != 0 && countBall != 0){
+            System.out.println(countStrike + "스트라이크 " + countBall + "볼");
+        }
+        else if (countBall != 0){
+            System.out.println(countBall + "볼");
+        }
+        else {
+            System.out.println(countStrike + "스트라이크");
+        }
+
+        return false;
+    }
+
     public static void main(String[] args) {
         // TODO 숫자 야구 게임 구현
         Application application = new Application();
@@ -52,6 +79,7 @@ public class Application {
         while (true) {
             String[] inputNumberArr = application.getInputNumber();
             int[] counts = application.getCounts(inputNumberArr, randomNumberArr);
+            boolean isCorrect = application.printCounts(counts);
         }
     }
 
