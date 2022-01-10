@@ -8,8 +8,14 @@ public class Application {
     // 컴퓨터 난수 생성
     public String[] getRandomNumber() {
         String[] arr = new String[3];
-        for(int i = 0; i < 3; i++){
-            arr[i] = String.valueOf(Randoms.pickNumberInRange(1, 9));
+        while (true){
+            for(int i = 0; i < 3; i++){
+                arr[i] = String.valueOf(Randoms.pickNumberInRange(1, 9));
+                System.out.println(arr[i]);
+            }
+            if (!arr[0].equals(arr[1]) && !arr[1].equals(arr[2]) && !arr[0].equals(arr[2])){
+                break;
+            }
         }
 
         return arr;
@@ -96,10 +102,8 @@ public class Application {
             if (!isCorrect){
                 continue;
             }
-            System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
             boolean stopGame = application.stopGame();
             if (stopGame) {
-                System.out.println("게임 끝");
                 break;
             } else {
                 randomNumberArr = application.getRandomNumber();
