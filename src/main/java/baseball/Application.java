@@ -24,10 +24,35 @@ public class Application {
         return arr;
     }
 
+    // 랜덤값, 입력값 비교 후 볼, 스트라이크 개수 반환
+    public int[] getCounts(String[] inputValue, String[] randomValue) {
+        int[] counts = new int[2];
+
+        for(int i = 0; i < 3; i++){
+            for(int j = 0; j < 3; j++){
+                if (i == j && inputValue[i].equals(randomValue[j])){
+                    counts[0]++;
+                    break;
+                }
+                if (i != j && inputValue[i].equals(randomValue[j])){
+                    counts[1]++;
+                    break;
+                }
+            }
+        }
+
+        return counts;
+    }
+
     public static void main(String[] args) {
         // TODO 숫자 야구 게임 구현
         Application application = new Application();
         String[] randomNumberArr = application.getRandomNumber();
+
+        while (true) {
+            String[] inputNumberArr = application.getInputNumber();
+            int[] counts = application.getCounts(inputNumberArr, randomNumberArr);
+        }
     }
 
 }
